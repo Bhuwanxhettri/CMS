@@ -7799,7 +7799,7 @@ sub {
   display: block; }
 
 .drop-down {
-  display: none;
+  /* display: none; */
   z-index: 9999;
   width: 20rem;
   top: 0rem !important;
@@ -8151,8 +8151,14 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   top: 0.625rem; }
 
 .content-body {
-  margin-left: 15.1875rem;
-  z-index: 0; }
+  z-index: 0; 
+}
+.content-body-collapsed{
+  margin-left: 6.1875rem;
+}
+.content-body-noncollapsed{
+  margin-left: 14.1875rem;
+}
   @media only screen and (min-width: 1200px) and (max-width: 1350px) {
     .content-body {
       margin-left: 14.375rem; } }

@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../css/style.css";
-import { MenuOutlined, SearchOutlined } from "@ant-design/icons";
-const Header = ({ collapsed, changeCollapsed }) => {
+import {
+  MenuOutlined,
+  SearchOutlined,
+  MailOutlined,
+  BellOutlined,
+  UserOutlined,
+  PoweroffOutlined,
+} from "@ant-design/icons";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleCollapsed } from "../features/sidebar/collapsed";
+import { Link } from "react-router-dom";
+const Header = () => {
+  const collapsed = useSelector((state) => state.sidebar.collapsed);
+  const dispatch = useDispatch();
+  const [display, setDisplay] = useState(false);
+
+  const toggleDisplay = () => {
+    setDisplay(!display);
+    setTimeout(() => {
+      setDisplay(false);
+    }, 6000);
+  };
+  useEffect(() => {}, [display]);
   return (
     <div>
       <div
         className={
-          collapsed ? `header header-nonCollapsed` : `header header-Collapsed`
+          collapsed
+            ? `header header-nonCollapsed position-fixed shadow-sm`
+            : `header header-Collapsed position-fixed shadow-sm`
         }
       >
         <div className="header-content clearfix">
@@ -14,7 +37,7 @@ const Header = ({ collapsed, changeCollapsed }) => {
             <div className="hamburger">
               <button
                 onClick={() => {
-                  changeCollapsed();
+                  dispatch(toggleCollapsed());
                 }}
                 style={{ cursor: "pointer" }}
                 className="input-group-text bg-transparent border-0 pr-2 pr-sm-3"
@@ -54,7 +77,7 @@ const Header = ({ collapsed, changeCollapsed }) => {
             <ul className="clearfix">
               <li className="icons dropdown">
                 <a href="javascript:void(0)" data-toggle="dropdown">
-                  <i className="mdi mdi-email-outline" />
+                  <MailOutlined />
                   <span className="badge gradient-1 badge-pill badge-primary">
                     3
                   </span>
@@ -149,7 +172,7 @@ const Header = ({ collapsed, changeCollapsed }) => {
               </li>
               <li className="icons dropdown">
                 <a href="javascript:void(0)" data-toggle="dropdown">
-                  <i className="mdi mdi-bell-outline" />
+                  <BellOutlined />
                   <span className="badge badge-pill gradient-2 badge-primary">
                     3
                   </span>
@@ -249,38 +272,54 @@ const Header = ({ collapsed, changeCollapsed }) => {
               <li className="icons dropdown">
                 <div
                   className="user-img c-pointer position-relative"
-                  data-toggle="dropdown"
+                  onClick={() => {
+                    toggleDisplay();
+                  }}
                 >
                   <span className="activity active" />
-                  <img src="images/user/1.png" height={40} width={40} alt="" />
+                  <img
+                    src="https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg"
+                    height={40}
+                    width={40}
+                    alt="profileImg"
+                  />
                 </div>
-                <div className="drop-down dropdown-profile dropdown-menu">
+                <div
+                  style={{ display: `${display ? "block" : "none"}` }}
+                  className="drop-down dropdown-profile dropdown-menu"
+                >
                   <div className="dropdown-content-body">
                     <ul>
-                      <li>
-                        <a href="app-profile.html">
-                          <i className="icon-user" /> <span>Profile</span>
-                        </a>
+                      <li
+                        onClick={() => {
+                          toggleDisplay();
+                        }}
+                      >
+                        <Link to="/profile">
+                          <UserOutlined className="" /> <span>Profile</span>
+                        </Link>
                       </li>
-                      <li>
-                        <a href="email-inbox.html">
-                          <i className="icon-envelope-open" />{" "}
-                          <span>Inbox</span>
-                          <div className="badge gradient-3 badge-pill badge-primary">
-                            3
-                          </div>
-                        </a>
+                      {/* <li>
+                        <Link to="/profile">
+                          <UserOutlined className="" /> <span>Profile</span>
+                        </Link>
                       </li>
                       <hr className="my-2" />
                       <li>
-                        <a href="page-lock.html">
-                          <i className="icon-lock" /> <span>Lock Screen</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="page-login.html">
-                          <i className="icon-key" /> <span>Logout</span>
-                        </a>
+                        <Link to="/profile">
+                          <UserOutlined className="" /> <span>Profile</span>
+                        </Link>
+                      </li> */}
+                      <li
+                        onClick={() => {
+                          toggleDisplay();
+                        }}
+                      >
+                        <Link to="/profile">
+                          <PoweroffOutlined />
+
+                          <span> {""}Logout</span>
+                        </Link>
                       </li>
                     </ul>
                   </div>

@@ -1,10 +1,19 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
+  const collapsed = useSelector((state) => state.sidebar.collapsed);
   return (
     <div>
-      <div className="content-body">
-        <div className="container-fluid mt-3">
+      <div
+        className={
+          collapsed
+            ? `content-body content-body-collapsed`
+            : `content-body content-body-noncollapsed`
+        }
+        style={{ marginTop: "94px" }}
+      >
+        <div className="container-xxl ">
           <div className="row">
             <div className="col-lg-3 col-sm-6">
               <div className="card gradient-1">
@@ -779,7 +788,6 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        {/* #/ container */}
       </div>
     </div>
   );

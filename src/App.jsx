@@ -6,6 +6,7 @@ import Signin from "./pages/auth/Signin";
 import Loader from "./component/Loader";
 import Layout from "./layout/Layout";
 import Dashboard from "./pages/Dashboard/Dashboard.view";
+import Profile from "./pages/Dashboard/Profile";
 
 const App = () => {
   const isAuthenticated = true;
@@ -34,6 +35,7 @@ const App = () => {
           <Layout>
             <Routes>
               <Route path="/dashboard" exact element={<Dashboard />} />
+              <Route path="/profile" exact element={<Profile />} />
             </Routes>
           </Layout>
         </>

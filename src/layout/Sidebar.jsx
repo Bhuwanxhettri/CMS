@@ -17,18 +17,15 @@ import {
   FieldTimeOutlined,
   PoweroffOutlined,
 } from "@ant-design/icons";
-
+import { useSelector } from "react-redux";
 const Sidebar = () => {
-  const [collapsed, setCollapsed] = useState(false);
-  const changeCollapsed = () => {
-    setCollapsed(!collapsed);
-  };
+  const collapsed = useSelector((state) => state.sidebar.collapsed);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
   return (
     <Layout hasSider>
-      <Header collapsed={collapsed} changeCollapsed={changeCollapsed} />
+      <Header />
       <Sider
         width={211}
         trigger={null}
@@ -210,6 +207,7 @@ const Sidebar = () => {
                     fontWeight: "blod",
                     color: "black",
                   }}
+                  to="/dashboard"
                   className="pl-4 py-3 list-group-item-action "
                 >
                   <span style={{ fontSize: "15px" }} className="px-2">
