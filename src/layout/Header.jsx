@@ -1,15 +1,26 @@
 import React from "react";
 import "../css/style.css";
-const Header = () => {
+import { MenuOutlined, SearchOutlined } from "@ant-design/icons";
+const Header = ({ collapsed, changeCollapsed }) => {
   return (
     <div>
-      <div className="header">
-        <div className="header-content clearfix  ">
+      <div
+        className={
+          collapsed ? `header header-nonCollapsed` : `header header-Collapsed`
+        }
+      >
+        <div className="header-content clearfix">
           <div className="nav-control">
             <div className="hamburger">
-              <span className="toggle-icon">
-                <i className="icon-menu" />
-              </span>
+              <button
+                onClick={() => {
+                  changeCollapsed();
+                }}
+                style={{ cursor: "pointer" }}
+                className="input-group-text bg-transparent border-0 pr-2 pr-sm-3"
+              >
+                <MenuOutlined style={{ fontSize: "23px" }} />
+              </button>
             </div>
           </div>
           <div className="header-left">
@@ -19,7 +30,7 @@ const Header = () => {
                   className="input-group-text bg-transparent border-0 pr-2 pr-sm-3"
                   id="basic-addon1"
                 >
-                  <i className="mdi mdi-magnify" />
+                  <SearchOutlined />
                 </span>
               </div>
               <input

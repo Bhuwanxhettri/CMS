@@ -7579,9 +7579,21 @@ sub {
   z-index: 999;
   left: auto; }
 
+  ::-webkit-scrollbar {
+    width: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color:#7571F9;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+  }
 .nav-header {
   height: 5rem;
-  width: 15.1875rem;
+  width: 209.45px;
   display: inline-block;
   text-align: left;
   position: absolute;
@@ -7678,8 +7690,17 @@ sub {
   position: relative;
   padding: 0 0.9375rem;
   background: #fff;
-  margin-left: 15.1875rem;
-  transition: all .2s ease; }
+  transition: all .2s ease;
+ }
+ .header-Collapsed{
+  margin-left:13.143rem;
+  min-width: 1155px;
+ }
+ .header-nonCollapsed{
+  min-width:1280px;
+  margin-left:5.043rem
+
+ }
   .header .header-content {
     height: 100%; }
 

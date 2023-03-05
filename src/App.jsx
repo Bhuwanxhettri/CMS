@@ -8,7 +8,7 @@ import Layout from "./layout/Layout";
 import Dashboard from "./pages/Dashboard/Dashboard.view";
 
 const App = () => {
-  const isAuthenticated = false;
+  const isAuthenticated = true;
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const App = () => {
         )}
       </Routes>
 
-      {!isAuthenticated && (
+      {isAuthenticated && (
         <>
           <Layout>
             <Routes>
